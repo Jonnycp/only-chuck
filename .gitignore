@@ -105,3 +105,6 @@ dist
 
 # MacOs
 .DS_Store
+
+#VitePWA
+dev-dist/
