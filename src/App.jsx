@@ -1,10 +1,12 @@
 import React from "react";
 import Theme from "./style/Theme";
 
+import Header from "./components/Header";
+
 const App = () => {
   return (
     <Theme>
-      <h1>Test</h1>
+        <Header />
     </Theme>
   );
 };
