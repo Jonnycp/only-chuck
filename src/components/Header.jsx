@@ -21,7 +21,7 @@ const Header = () => {
   return (
     <HeaderContainer>
       <Logo />
-      <CategoryButton selected="animal" />
+      <CategoryButton selected="random" />
     </HeaderContainer>
   );
 };
