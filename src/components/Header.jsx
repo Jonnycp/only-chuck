@@ -3,6 +3,7 @@ import styled from "styled-components";
 import CategoryButton from "./CategoryButton";
 import Logo from "./Logo";
 import { device } from "../style/devices";
+import PropTypes from "prop-types";
 
 const HeaderContainer = styled.header`
   display: flex;
@@ -17,13 +18,17 @@ const HeaderContainer = styled.header`
   }
 `;
 
-const Header = () => {
+const Header = ({category}) => {
   return (
     <HeaderContainer>
       <Logo />
-      <CategoryButton selected="random" />
+      <CategoryButton selected={category}/>
     </HeaderContainer>
   );
+};
+
+Header.prototype = {
+  category: PropTypes.string.isRequired,
 };
 
 export default Header;
