@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import PropTypes from "prop-types";
 import { Icon } from "@iconify/react";
 
 const IconButton = styled.button`
@@ -23,6 +24,11 @@ const NavigationButton = ({ left, action }) => {
       />
     </IconButton>
   );
+};
+
+NavigationButton.prototype = {
+    left: PropTypes.bool,
+    action: PropTypes.func.isRequired,
 };
 
 export default NavigationButton;
