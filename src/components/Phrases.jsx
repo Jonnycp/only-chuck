@@ -26,11 +26,7 @@ const S_SwiperSlide = styled(SwiperSlide)`
   padding: 0 35px;
 `;
 
-const Phrases = () => {
-  const [frasi, setFrasi] = useState([
-    "Carly Fiorina once crawled through the entire Waco, TX sewer system just to watch Chuck Norris take a shit in a Taco Bell restrooM.",
-    "fra",
-  ]);
+const Phrases = ({frasi, generateNew}) => {
   const [swiper, setSwiper] = useState(null);
   const [currentSlide, setCurrentSlide] = useState(1);
 
@@ -46,7 +42,12 @@ const Phrases = () => {
       {currentSlide != 1 && (
         <NavigationButton left action={() => swiper.slidePrev()} />
       )}
-      <NavigationButton action={() => swiper.slideNext()} />
+      <NavigationButton action={() => {
+        swiper.slideNext()
+        if(swiper.isEnd){
+          generateNew()
+        }
+      }} />
     </>
   );
 };
