@@ -6,6 +6,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import { getFrase } from "../utils/functions";
 import { Icon } from "@iconify/react";
+import PropTypes from "prop-types";
 
 const S_Swiper = styled(Swiper)`
   width: 100%;
@@ -90,6 +91,10 @@ const Phrases = ({ category }) => {
       </S_Swiper>
     </>
   );
+};
+
+Phrases.prototype = {
+  category: PropTypes.string.isRequired,
 };
 
 export default Phrases;
