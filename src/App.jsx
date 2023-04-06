@@ -5,7 +5,6 @@ import styled from "styled-components";
 import Header from "./components/Header";
 import Phrases from "./components/Phrases";
 
-
 const Container = styled.main`
   width: 100%;
   min-height: 100vh;
@@ -17,20 +16,6 @@ const Container = styled.main`
 const App = () => {
   const [category, setCategory] = useState("random");
 
-
-  // useEffect(() => {
-  //   let loading = true;
-  //   const _category = category === "random" ? undefined : category;
-
-  //   setFrasi([...frasi, "Loading..."]);
-  //   getFrase(_category).then((res) => {
-  //     if (loading) {
-  //       setFrasi([...frasi, res]);
-  //     }
-  //   });
-  //   return () => (loading = false);
-  // }, []);
-
   return (
     <Theme>
       <Container>
@@ -39,19 +24,6 @@ const App = () => {
       </Container>
     </Theme>
   );
-};
-
-const generateNew = (category, frasi, setFrasi) => {
-  let loading = true;
-  const _category = category === "random" ? undefined : category;
-
-  setFrasi([...frasi, "Loading..."]);
-  getFrase(_category).then((res) => {
-    if (loading) {
-      setFrasi([...frasi, res]);
-    }
-  });
-  return () => (loading = false);
 };
 
 export default App;
