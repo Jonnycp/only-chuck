@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 import Header from "./components/Header";
 import Phrases from "./components/Phrases";
-import { getFrase } from "./utils/functions";
+
 
 const Container = styled.main`
   width: 100%;
@@ -16,32 +16,42 @@ const Container = styled.main`
 
 const App = () => {
   const [category, setCategory] = useState("random");
-  const [frasi, setFrasi] = useState([]);
 
-  useEffect(() => generateNew(category, frasi, setFrasi), []);
+
+  // useEffect(() => {
+  //   let loading = true;
+  //   const _category = category === "random" ? undefined : category;
+
+  //   setFrasi([...frasi, "Loading..."]);
+  //   getFrase(_category).then((res) => {
+  //     if (loading) {
+  //       setFrasi([...frasi, res]);
+  //     }
+  //   });
+  //   return () => (loading = false);
+  // }, []);
 
   return (
     <Theme>
       <Container>
         <Header category={category} />
-        <Phrases frasi={frasi} generateNew={() => generateNew(category, frasi, setFrasi)} />
+        <Phrases category={category} />
       </Container>
     </Theme>
   );
 };
 
 const generateNew = (category, frasi, setFrasi) => {
-    let loading = true;
-    const _category = category === "random" ? undefined : category;
+  let loading = true;
+  const _category = category === "random" ? undefined : category;
 
-    setFrasi([...frasi, "Loading..."]);
-    getFrase(_category).then((res) => {
-      if (loading) {
-        setFrasi([...frasi, res]);
-      }
-    });
-
-    return () => (loading = false);
+  setFrasi([...frasi, "Loading..."]);
+  getFrase(_category).then((res) => {
+    if (loading) {
+      setFrasi([...frasi, res]);
+    }
+  });
+  return () => (loading = false);
 };
 
 export default App;
