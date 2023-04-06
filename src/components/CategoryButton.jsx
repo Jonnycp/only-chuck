@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 import { device } from "../style/devices";
 import category2Symbol from "../utils/category2Symbol";
 import { capitalize } from "../utils/functions";
+import CategoryModal from "./CategoryModal";
 
 const Button = styled.button`
   outline: none;
@@ -35,13 +36,18 @@ const Button = styled.button`
   }
 `;
 
-const CategoryButton = ({ selected }) => {
-    const symbol = category2Symbol[selected] || selected[0].toUpperCase();
-    
+const CategoryButton = ({ selected, setCategory }) => {
+  const [open, setOpen] = useState(false);
+  const symbol = category2Symbol[selected] || selected[0].toUpperCase();
+
   return (
-    <Button>
-      {symbol}<span>{capitalize(selected)}</span>
-    </Button>
+    <>
+      <Button onClick={() => setOpen(!open)}>
+        {symbol}
+        <span>{capitalize(selected)}</span>
+      </Button>
+      {open && <CategoryModal setCategory={setCategory} setOpen={setOpen} category2Symbol={category2Symbol}/>}
+    </>
   );
 };
 

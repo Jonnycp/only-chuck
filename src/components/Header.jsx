@@ -17,11 +17,11 @@ const HeaderContainer = styled.header`
   }
 `;
 
-const Header = () => {
+const Header = ({category, setCategory}) => {
   return (
     <HeaderContainer>
       <Logo />
-      <CategoryButton selected="random" />
+      <CategoryButton selected={category} setCategory={setCategory}/>
     </HeaderContainer>
   );
 };
