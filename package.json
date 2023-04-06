@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "host": "vite --host",
     "build": "vite build",
     "preview": "vite preview",
     "storybook": "start-storybook -p 6006",
@@ -13,11 +14,13 @@
   "dependencies": {
     "protypes": "^1.1.0",
     "react": "^18.2.0",
+    "react-confetti-explosion": "^2.1.1",
     "react-dom": "^18.2.0",
     "styled-components": "^5.3.9"
   },
   "devDependencies": {
     "@babel/core": "^7.21.0",
+    "@iconify/react": "^4.1.0",
     "@storybook/addon-actions": "^6.5.16",
     "@storybook/addon-essentials": "^6.5.16",
     "@storybook/addon-interactions": "^6.5.16",
