@@ -22,17 +22,18 @@ const S_Swiper = styled(Swiper)`
   flex-direction: column;
   justify-content: center;
   position: relative;
+
+  & div {
+    align-items: center;
+  }
 `;
 
 const S_SwiperSlide = styled(SwiperSlide)`
   padding: 0 35px;
 `;
 
-const Phrases = ({ category }) => {
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const [frasi, setFrasi] = useState(["Scorri per iniziare"]);
+const Phrases = ({ category, frasi, setFrasi, currentSlide, setCurrentSlide }) => {
   const [error, setError] = useState(false);
-
   /* Mi serviva un modo per avere 2 frasi al render iniziale, per far apparire le frecce:
      Ho provato a generare la seconda frase al primo movimento dello swiper, però bisognava usare un "tocco deciso" o cliccare 2 volte
      Il modo più semplice quindi è mettere "Scorri per iniziare" come prima frase e nella seconda slide la prima frase
@@ -95,6 +96,10 @@ const Phrases = ({ category }) => {
 
 Phrases.prototype = {
   category: PropTypes.string.isRequired,
+  frasi: PropTypes.array.isRequired,
+  setFrasi: PropTypes.func.isRequired,
+  currentSlide: PropTypes.number.isRequired,
+  setCurrentSlide: PropTypes.func.isRequired,
 };
 
 export default Phrases;
