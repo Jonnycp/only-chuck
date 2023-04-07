@@ -8,11 +8,28 @@ CHANGELOG:
 - Reduced width in function of size*3
 - Added display flex to container #wheel
 - Added margin-right to canvas on mobile (<= 375)
+- Added sound effect with playbackRate (can decrease to < 1)
+
+
+A questo punto mi conveniva scriverlo da zero, piuttosto che adattarlo, ma vabbè
 */
 
 import React, { useState, useEffect } from 'react';
+import useSound from 'use-sound';
+import tone1 from '../audio/spin_tone1.mp3';
+import tone2 from '../audio/spin_tone2.mp3';
 
 var WheelComponent = function WheelComponent(_ref) {
+  const [playbackRate, setPlaybackRate] = useState(3);
+  const [playToneA] = useSound(tone1, {
+    volume: 0.5,
+    playbackRate
+  });
+  const [playToneB] = useSound(tone2, {
+    volume: 0.5,
+    playbackRate
+  });
+
   var segments = _ref.segments,
       segColors = _ref.segColors,
       winningSegment = _ref.winningSegment,
@@ -33,7 +50,9 @@ var WheelComponent = function WheelComponent(_ref) {
       downDuration = _ref$downDuration === void 0 ? 1000 : _ref$downDuration,
       _ref$fontFamily = _ref.fontFamily,
       fontFamily = _ref$fontFamily === void 0 ? 'proxima-nova' : _ref$fontFamily;
-  var currentSegment = '';
+
+  var currentSegment = "";
+  const [current, setCurrent] = useState('');
   var isStarted = false;
 
   var _useState = useState(false),
@@ -52,6 +71,8 @@ var WheelComponent = function WheelComponent(_ref) {
   var frames = 0;
   var centerX = 300;
   var centerY = 230;
+
+
   useEffect(function () {
     wheelInit();
     setTimeout(function () {
@@ -89,6 +110,18 @@ var WheelComponent = function WheelComponent(_ref) {
       timerHandle = setInterval(onTimerTick, timerDelay);
     }
   };
+  
+const [counter, setCounter] = useState(0);
+useEffect(() => {
+  setCounter(counter + 1)
+  setPlaybackRate(3 - counter / 100)
+    if (counter % 2 === 0) {
+      playToneA();
+    } else {
+      playToneB();
+    }
+  }, [current]);
+
 
   var onTimerTick = function onTimerTick() {
     frames++;
@@ -222,6 +255,7 @@ var WheelComponent = function WheelComponent(_ref) {
     ctx.fillStyle = primaryColor;
     ctx.font = 'bold 1.5em ' + fontFamily;
     currentSegment = segments[i];
+    setCurrent(segments[i]);
     isStarted && ctx.fillText(currentSegment, centerX + 10, centerY + size + 50);
   };
 

@@ -11,6 +11,9 @@ import Wheel from "./Wheel";
 import ConfettiExplosion from "react-confetti-explosion";
 import { device } from "../style/devices";
 
+import useSound from 'use-sound';
+import winningAudio from '../audio/winning.mp3';
+
 const Background = styled.div`
   position: fixed;
   top: 0;
@@ -53,11 +56,14 @@ const Close = styled.button`
 const CategoryModal = ({ setCategory, setOpen, category2Symbol }) => {
   const wrapperRef = useRef(null);
   const [winner, setWinner] = useState(null);
+  const [play] = useSound(winningAudio);
+
   useOutsideAlerter(wrapperRef, () => setOpen(false));
 
   useEffect(() => {
     if (winner) {
       setCategory(winner);
+      play();
     }
   }, [winner]);
 
@@ -66,7 +72,7 @@ const CategoryModal = ({ setCategory, setOpen, category2Symbol }) => {
       {winner && (
         <S_ConfettiExplosion
           force={0.8}
-          duration={2500}
+          duration={2300}
           particleCount={250}
           width={1600}
           onComplete={() => setOpen(false)}
