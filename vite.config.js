@@ -50,6 +50,7 @@ export default defineConfig({
             url: "/?category=%s",
           },
         ],
+        permissions: ["clipboard-write"],
       },
     }),
   ],
