@@ -20,7 +20,7 @@ export default defineConfig({
         background_color: "#151f1f",
         display: "fullscreen",
         orientation: "portrait",
-        scope: ".",
+        scope: "/only-chuck/",
         start_url: "/only-chuck/",
         id: "/",
         icons: [
@@ -48,7 +48,7 @@ export default defineConfig({
         protocol_handlers: [
           {
             protocol: "web+chuck",
-            url: "/?category=%s",
+            url: "/only-chuck/?category=%s",
           },
         ],
         permissions: ["clipboard-write"],
