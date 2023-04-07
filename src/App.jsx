@@ -39,7 +39,7 @@ const App = () => {
       <Container>
         <Header category={category} setCategory={setCategory} />
         <Phrases category={category} frasi={frasi} setFrasi={setFrasi} currentSlide={currentSlide} setCurrentSlide={setCurrentSlide}/>
-        <Footer frase={currentSlide > 0 && frasi[currentSlide-1] }/>
+        <Footer frase={currentSlide > 0 ? frasi[currentSlide-1] : undefined}/>
       </Container>
     </Theme>
   );
