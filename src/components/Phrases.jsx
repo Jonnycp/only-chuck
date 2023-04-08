@@ -32,8 +32,8 @@ const S_SwiperSlide = styled(SwiperSlide)`
   padding: 0 35px;
 `;
 
-const Phrases = ({ category, frasi, setFrasi, currentSlide, setCurrentSlide }) => {
-  const [error, setError] = useState(false);
+const Phrases = ({ category, frasi, setFrasi, currentSlide, setCurrentSlide, _error=false }) => {
+  const [error, setError] = useState(_error);
   /* Mi serviva un modo per avere 2 frasi al render iniziale, per far apparire le frecce:
      Ho provato a generare la seconda frase al primo movimento dello swiper, però bisognava usare un "tocco deciso" o cliccare 2 volte
      Il modo più semplice quindi è mettere "Scorri per iniziare" come prima frase e nella seconda slide la prima frase
@@ -51,7 +51,7 @@ const Phrases = ({ category, frasi, setFrasi, currentSlide, setCurrentSlide }) =
       initialized = true;
       getFrase(category)
         .then((res) => setFrasi([...frasi, res]))
-        .catch((err) => setError(err));
+        .catch((err) => !_error && setError(err));
     }
   }, [currentSlide]);
 
@@ -68,7 +68,7 @@ const Phrases = ({ category, frasi, setFrasi, currentSlide, setCurrentSlide }) =
           }
         }}*/
       >
-        {frasi.length > 1
+        {frasi && frasi.length > 1
           ? frasi.map((frase, i) => (
               <S_SwiperSlide key={i} virtualIndex={i}>
                 {i === 0 ? (
