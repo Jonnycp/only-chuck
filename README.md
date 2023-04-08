@@ -32,6 +32,9 @@ Le categorie sono prefissate in [`src/utils/category2Symbol.json`](src/utils/cat
 Il sito è installabile, in quanto PWA.
 È stato quindi inserito il webmanifest e il service worker.
 
+## STORYBOOK
+È possibile vedere i componenti costruiti con eventuali parametri e descrizioni sulla pagina dello storybook.
+
 ## About
 Il progetto è stato sviluppato interamente (design e codice) da [Jonathan Caputo](mailto:jonathan-caputo@hotmail.com)
 
