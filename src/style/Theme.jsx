@@ -2,7 +2,7 @@ import React from "react";
 import { ThemeProvider } from "styled-components";
 import GlobalStyle from "./GlobalStyle";
 
-const theme = {
+export const themeObj = {
   colors: {
     background: "#151f1f",
     primary: "#d2a741",
@@ -20,7 +20,7 @@ const theme = {
 const Theme = ({ children }) => (
   <>
     <GlobalStyle />
-    <ThemeProvider theme={theme}>{children}</ThemeProvider>
+    <ThemeProvider theme={themeObj}>{children}</ThemeProvider>
   </>
 );
 

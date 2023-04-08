@@ -46,8 +46,8 @@ const Button = styled.button`
   }  
 `;
 
-const Footer = ({ frase }) => {
-  const [canCopy, setCanCopy] = useState(false);
+const Footer = ({ frase, canCopyOverride=false}) => {
+  const [canCopy, setCanCopy] = useState(canCopyOverride);
   const [play] = useSound(copySFX)
 
   if (!canCopy) {

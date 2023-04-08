@@ -1,13 +1,14 @@
-import React from 'react';
-import Header from '../components/Header';
-import category2Symbol from '../utils/category2Symbol';
+import React from "react";
+
+import CategoryButton from "../components/CategoryButton";
+import category2Symbol from "../utils/category2Symbol";
 
 export default {
-  title: 'Header',
-  component: Header,
+  component: CategoryButton,
+  title: "CategoryButton",
   argTypes: {
-    category: {
-      name: "category",
+    selected: {
+      name: "selected",
       control: {
         type: "select",
         options: Object.keys(category2Symbol),
@@ -28,26 +29,25 @@ export default {
       },
     },
   },
-  parameters: {
-    layout: 'fullscreen',
-  }
-
 };
 
-const Template = (args) => <Header {...args} />;
+const Template = (args) => <CategoryButton {...args} />;
 
 export const Big = Template.bind({});
 Big.args = {
-  category: "random"
+  selected: "random"
 };
+
 export const Small = Template.bind({});
 Small.args = {
-  category: "animal"
+  selected: "random"
 };
 Small.parameters = {
   viewport: {
-    defaultViewport: 'mobile1',
+    defaultViewport: "mobile1",
   },
 };
-
-
+export const Error = Template.bind({});
+Error.args = {
+  selected: "JONNY"
+};
