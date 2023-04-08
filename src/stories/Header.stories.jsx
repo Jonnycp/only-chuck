@@ -1,24 +1,53 @@
 import React from 'react';
-
-import { Header } from './Header';
+import Header from '../components/Header';
+import category2Symbol from '../utils/category2Symbol';
 
 export default {
-  title: 'Example/Header',
+  title: 'Header',
   component: Header,
-  parameters: {
-    // More on Story layout: https://storybook.js.org/docs/react/configure/story-layout
-    layout: 'fullscreen',
+  argTypes: {
+    category: {
+      name: "category",
+      control: {
+        type: "select",
+        options: Object.keys(category2Symbol),
+        required: true,
+      },
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: 'random' },
+      },
+      description: "Categoria Selezionata",
+      defaultValue: "random",
+    },
+    setCategory: {
+      action: "setCategory",
+      description: "Setter per la categoria",
+      table: {
+        type: { summary: 'function' },
+      },
+    },
   },
+  parameters: {
+    layout: 'fullscreen',
+  }
+
 };
 
 const Template = (args) => <Header {...args} />;
 
-export const LoggedIn = Template.bind({});
-LoggedIn.args = {
-  user: {
-    name: 'Jane Doe',
+export const Big = Template.bind({});
+Big.args = {
+  category: "random"
+};
+export const Small = Template.bind({});
+Small.args = {
+  category: "animal"
+};
+Small.parameters = {
+  viewport: {
+    defaultViewport: 'mobile1',
   },
 };
 
-export const LoggedOut = Template.bind({});
-LoggedOut.args = {};
+
